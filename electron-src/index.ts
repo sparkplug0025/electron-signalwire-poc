@@ -51,11 +51,11 @@ ipcMain.on("message", (event: IpcMainEvent, message: any) => {
 
 // display a menu for the user to select videoconf screen share sources
 ipcMain.on("show-screen-share-selector", async (event: IpcMainEvent) => {
-  const inputSources = await desktopCapturer.getSources({
-    types: ["window", "screen"],
-  });
-
   try {
+    const inputSources = await desktopCapturer.getSources({
+      types: ["window", "screen"],
+    });
+
     const selectedSourceId = await new Promise<string>((resolve, reject) => {
       const videoOptionsMenu = Menu.buildFromTemplate(
         inputSources.map((source) => ({
